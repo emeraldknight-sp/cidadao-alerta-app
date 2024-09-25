@@ -54,7 +54,7 @@ export default function App() {
   };
 
   return (
-    <View className="flex flex-col justify-center items-center gap-6 flex-1">
+    <View className="flex flex-col justify-center items-center gap-6 flex-1 p-8">
       <View className="flex flex-col items-center gap-2">
         <Image
           source={require("@/src/assets/logo.png")}

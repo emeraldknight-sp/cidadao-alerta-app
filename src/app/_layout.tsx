@@ -25,7 +25,7 @@ export default function Layout() {
 
   return (
     <GestureHandlerRootView>
-      <SafeAreaView className="flex-1 bg-neutral-50 p-8">
+      <SafeAreaView className="flex-1 bg-neutral-50 ">
         <Toaster position="top-center" />
         <Slot />
       </SafeAreaView>
