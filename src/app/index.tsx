@@ -44,7 +44,9 @@ export default function App() {
     if (user && user?.password === password) {
       router.push("/home");
     } else {
-      toast.error("Usuário não encontrado!", {id: "user-not-found"});
+      toast.error("Usuário não encontrado!", {
+        id: "user-not-found",
+      });
     }
   };
 
@@ -55,7 +57,9 @@ export default function App() {
           source={require("@/src/assets/logo.png")}
           className="w-[120px] h-[82px]"
         />
-        <Text className="text-2xl text-neutral-950 font-heading">Cidadão Alerta</Text>
+        <Text className="text-2xl text-neutral-950 font-heading">
+          Cidadão Alerta
+        </Text>
       </View>
       <View className="w-full">
         <Text className="text-sm text-neutral-950">E-mail:</Text>
@@ -64,7 +68,7 @@ export default function App() {
           name="email"
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
-            defaultValue="lorena@gmail.com"
+              defaultValue="lorena@gmail.com"
               inputMode="email"
               autoComplete="email"
               placeholder="Digite seu e-mail"
@@ -89,7 +93,7 @@ export default function App() {
           name="password"
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
-            defaultValue="12345678"
+              defaultValue="12345678"
               autoComplete="password"
               placeholder="Digite sua senha"
               onChangeText={onChange}
@@ -107,7 +111,7 @@ export default function App() {
           </Text>
         )}
       </View>
-      <Button onPress={handleSubmit(onSubmit)}>
+      <Button color="primary" onPress={handleSubmit(onSubmit)}>
         <Button.Text>Entrar</Button.Text>
       </Button>
     </View>
