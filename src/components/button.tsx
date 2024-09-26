@@ -1,10 +1,14 @@
+import clsx from "clsx";
 import { ButtonIconProps, ButtonProps, ButtonTextProps } from "../@types";
 import { Text, TouchableOpacity } from "react-native";
 
-function Button({ children, ...rest }: ButtonProps) {
+function Button({ children, color, ...rest }: ButtonProps) {
   return (
     <TouchableOpacity
-      className="w-full h-12 bg-orange-500 rounded-md items-center justify-center flex-row flex"
+      className={clsx(
+        "w-full h-12 bg-orange-500 rounded-md items-center justify-center flex-row flex",
+        color === "primary" ? "bg-orange-500" : "bg-gray-800"
+      )}
       activeOpacity={0.7}
       {...rest}
     >
@@ -15,7 +19,9 @@ function Button({ children, ...rest }: ButtonProps) {
 
 function ButtonText({ children }: ButtonTextProps) {
   return (
-    <Text className="text-neutral-50 font-heading text-base mx-2">{children}</Text>
+    <Text className="text-neutral-50 font-heading text-base mx-2">
+      {children}
+    </Text>
   );
 }
 
