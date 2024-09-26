@@ -19,3 +19,8 @@ interface User {
   email: string;
   password: string;
 }
+
+interface DefectProps {
+  name: string;
+  description: string;
+}
