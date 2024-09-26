@@ -7,6 +7,12 @@ export default function PavimentDefect() {
   const defect = PAVIMENTS.find((pavimentEL) => pavimentEL.id === Number(id));
 
   return (
-    defect && <Defect name={defect.name} description={defect.description} />
+    defect && (
+      <Defect
+        id={defect.id}
+        name={defect.name}
+        description={defect.description}
+      />
+    )
   );
 }

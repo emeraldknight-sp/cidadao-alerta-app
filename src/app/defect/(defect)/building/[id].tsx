@@ -7,6 +7,12 @@ export default function BuildingDefect() {
   const defect = BUILDINGS.find((buildingEL) => buildingEL.id === Number(id));
 
   return (
-    defect && <Defect name={defect.name} description={defect.description} />
+    defect && (
+      <Defect
+        id={defect.id}
+        name={defect.name}
+        description={defect.description}
+      />
+    )
   );
 }
