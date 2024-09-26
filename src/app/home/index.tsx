@@ -9,7 +9,6 @@ import {
 } from "accordion-collapse-react-native";
 
 export default function Home() {
-
   return (
     <View className="flex-col gap-3 mt-3">
       <Collapse>
