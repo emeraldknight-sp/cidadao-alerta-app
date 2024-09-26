@@ -1,10 +1,11 @@
-import { TouchableOpacityProps } from "react-native";
+import { ImageSourcePropType, TouchableOpacityProps } from "react-native";
 
 declare module "accordion-collapse-react-native";
 declare module "*.png";
 
 interface ButtonProps extends TouchableOpacityProps {
   children: React.ReactNode;
+  color: "primary" | "secondary"
 }
 
 interface ButtonTextProps {
@@ -21,6 +22,11 @@ interface User {
 }
 
 interface DefectProps {
+  id: number;
   name: string;
   description: string;
 }
+
+type ImageIndex = {
+  [key: number]: ImageSourcePropType;
+};
