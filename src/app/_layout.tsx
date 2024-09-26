@@ -1,5 +1,8 @@
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { Loading } from "../components/loading";
 import { SafeAreaView } from "react-native";
 import { Slot } from "expo-router";
+import { Toaster } from "sonner-native";
 import {
   useFonts,
   Inter_400Regular,
@@ -7,9 +10,6 @@ import {
   Inter_600SemiBold,
   Inter_700Bold,
 } from "@expo-google-fonts/inter";
-import { Loading } from "../components/loading";
-import { Toaster } from "sonner-native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function Layout() {
   const [fontsLoaded] = useFonts({
@@ -25,7 +25,7 @@ export default function Layout() {
 
   return (
     <GestureHandlerRootView>
-      <SafeAreaView className="flex-1 bg-neutral-50 ">
+      <SafeAreaView className="flex-1 bg-neutral-50 antialiased">
         <Toaster position="top-center" />
         <Slot />
       </SafeAreaView>

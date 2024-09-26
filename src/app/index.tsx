@@ -1,16 +1,17 @@
 import { Button } from "../components/button";
 import { Image, Text, View } from "react-native";
 import { Input } from "../components/input";
+import { User } from "../@types";
+import { toast } from "sonner-native";
+import { useRouter } from "expo-router";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   useForm,
   Controller,
   SubmitHandler,
   FieldValues,
 } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { toast } from "sonner-native";
-import { useNavigation, useRouter } from "expo-router";
 
 const schema = z.object({
   email: z
@@ -21,13 +22,7 @@ const schema = z.object({
     .min(8, "Sua senha deve ter 8 caracteres"),
 });
 
-interface User {
-  email: string;
-  password: string;
-}
-
 export default function App() {
-  const navigation = useNavigation();
   const router = useRouter();
 
   const db: User[] = [
@@ -60,10 +55,10 @@ export default function App() {
           source={require("@/src/assets/logo.png")}
           className="w-[120px] h-[82px]"
         />
-        <Text className="text-2xl font-semibold">Cidadão Alerta</Text>
+        <Text className="text-2xl text-neutral-950 font-heading">Cidadão Alerta</Text>
       </View>
       <View className="w-full">
-        <Text className="text-sm">E-mail:</Text>
+        <Text className="text-sm text-neutral-950">E-mail:</Text>
         <Controller
           control={control}
           name="email"
@@ -82,13 +77,13 @@ export default function App() {
           )}
         />
         {errors.email && typeof errors.email.message === "string" && (
-          <Text className="text-red-500 text-xs font-semibold">
+          <Text className="text-red-500 text-xs font-bold">
             {errors.email.message}
           </Text>
         )}
       </View>
       <View className="w-full">
-        <Text className="text-sm">Senha:</Text>
+        <Text className="text-sm text-neutral-950">Senha:</Text>
         <Controller
           control={control}
           name="password"
@@ -107,12 +102,12 @@ export default function App() {
           )}
         />
         {errors.password && typeof errors.password.message === "string" && (
-          <Text className="text-red-500 text-xs font-semibold">
+          <Text className="text-red-500 text-xs font-bold">
             {errors.password.message}
           </Text>
         )}
       </View>
-      <Button className="w-full" onPress={handleSubmit(onSubmit)}>
+      <Button onPress={handleSubmit(onSubmit)}>
         <Button.Text>Entrar</Button.Text>
       </Button>
     </View>
