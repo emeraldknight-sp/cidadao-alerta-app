@@ -1,7 +1,7 @@
+import { Button } from "./button";
 import { DefectProps, ImageIndex } from "../@types";
 import { Image, Text, View } from "react-native";
-import { Button } from "./button";
-import { toast } from "sonner-native";
+import { useRouter } from "expo-router";
 
 export default function Defect({ id, name, description }: DefectProps) {
   const image: ImageIndex = {
@@ -17,10 +17,16 @@ export default function Defect({ id, name, description }: DefectProps) {
     10: require("@/src/assets/defects/remendo.png"),
   };
 
+  const router = useRouter();
+
+  const handleReport = () => {
+    router.push("/report");
+  };
+
   return (
     <View className="mt-4">
       <Text className="text-base text-neutral-950 mb-2">
-        Definição do problema:
+        Definição do problema
       </Text>
       <View className="flex-col gap-2">
         <Text className="text-xl text-neutral-950 font-semibold">{name}</Text>
@@ -33,10 +39,7 @@ export default function Defect({ id, name, description }: DefectProps) {
         className="w-full h-56 rounded-md my-4"
         alt={name}
       />
-      <Button
-        color="secondary"
-        onPress={() => toast.info("Solicitando manutenção")}
-      >
+      <Button color="secondary" onPress={handleReport}>
         <Button.Text>Solicitar manutenção</Button.Text>
       </Button>
     </View>
