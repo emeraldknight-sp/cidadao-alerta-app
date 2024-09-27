@@ -62,7 +62,7 @@ export default function App() {
         </Text>
       </View>
       <View className="w-full">
-        <Text className="text-sm text-neutral-950">E-mail:</Text>
+        <Text className="text-sm text-neutral-950 font-heading">E-mail:</Text>
         <Controller
           control={control}
           name="email"
@@ -87,7 +87,7 @@ export default function App() {
         )}
       </View>
       <View className="w-full">
-        <Text className="text-sm text-neutral-950">Senha:</Text>
+        <Text className="text-sm text-neutral-950 font-heading">Senha:</Text>
         <Controller
           control={control}
           name="password"
