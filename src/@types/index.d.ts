@@ -1,4 +1,5 @@
 import { ImageSourcePropType, TouchableOpacityProps } from "react-native";
+import { LinkProps } from "expo-router";
 
 declare module "accordion-collapse-react-native";
 declare module "*.png";
@@ -19,6 +20,10 @@ interface ButtonIconProps {
 interface User {
   email: string;
   password: string;
+}
+
+interface LinkButtonProps extends LinkProps<string> {
+  title: string;
 }
 
 interface DefectProps {
