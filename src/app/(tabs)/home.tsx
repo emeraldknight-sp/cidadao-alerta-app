@@ -21,8 +21,8 @@ export default function Home() {
         </CollapseHeader>
         <CollapseBody>
           <FlatList
-            keyExtractor={(item) => item.name}
             data={BUILDINGS}
+            keyExtractor={(item) => item.name}
             renderItem={({ item }) => (
               <Link
                 href={`/defect/building/${item.id}`}
@@ -48,8 +48,8 @@ export default function Home() {
         </CollapseHeader>
         <CollapseBody>
           <FlatList
-            keyExtractor={(item) => item.name}
             data={PAVIMENTS}
+            keyExtractor={(item) => item.name}
             renderItem={({ item }) => (
               <Link
                 href={`/defect/paviment/${item.id}`}
