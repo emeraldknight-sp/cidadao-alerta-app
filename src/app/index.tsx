@@ -68,7 +68,6 @@ export default function App() {
           name="email"
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
-              defaultValue="lorena@gmail.com"
               inputMode="email"
               autoComplete="email"
               placeholder="Digite seu e-mail"
@@ -93,7 +92,6 @@ export default function App() {
           name="password"
           render={({ field: { onChange, onBlur, value } }) => (
             <Input
-              defaultValue="12345678"
               autoComplete="password"
               placeholder="Digite sua senha"
               onChangeText={onChange}
