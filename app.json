@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "cidadao-alerta-app",
+    "name": "Cidadão Alerta",
     "slug": "cidadao-alerta-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "cidadao-alerta-app",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
@@ -13,10 +13,17 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
+      "infoPlist": {
+        "NSPhotoLibraryUsageDescription": "Precisamos acessar sua galeria para selecionar uma imagem."
+      },
       "supportsTablet": true,
       "bundleIdentifier": "com.emeraldknightsp.cidadaoalertaapp"
     },
     "android": {
+      "permissions": [
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_EXTERNAL_STORAGE"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
@@ -33,7 +40,7 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "O aplicativo requer acesso a sua galeria."
+          "photosPermission": "Precisamos acessar sua galeria para selecionar uma imagem."
         }
       ]
     ],
