@@ -12,6 +12,7 @@ import {
   SubmitHandler,
   FieldValues,
 } from "react-hook-form";
+import { DATABASE } from "../utils/data/database";
 
 const schema = z.object({
   email: z
@@ -22,15 +23,8 @@ const schema = z.object({
     .min(8, "Sua senha deve ter 8 caracteres"),
 });
 
-export default function App() {
+export default function Login() {
   const router = useRouter();
-
-  const db: User[] = [
-    {
-      email: "lorena@gmail.com",
-      password: "12345678",
-    },
-  ];
 
   const {
     control,
@@ -39,10 +33,12 @@ export default function App() {
   } = useForm({ resolver: zodResolver(schema) });
 
   const onSubmit: SubmitHandler<FieldValues> = ({ email, password }) => {
-    const user: User | undefined = db.find((userEl) => userEl.email === email);
+    const user: User | undefined = DATABASE.find(
+      (userEl) => userEl.email === email
+    );
 
     if (user && user?.password === password) {
-      router.push("/home");
+      router.push("/(app)/");
     } else {
       toast.error("Usuário não encontrado!", {
         id: "user-not-found",

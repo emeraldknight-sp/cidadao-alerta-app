@@ -4,7 +4,7 @@ import colors from "tailwindcss/colors"
 
 export default function Header() {
   return (
-    <View className="bg-neutral-50 flex-row justify-between items-center z-10 py-2">
+    <View className="bg-white flex-row justify-between items-center z-10 p-4">
       <View className="flex flex-row items-center gap-2">
         <Image
           source={require("@/src/assets/logo.png")}

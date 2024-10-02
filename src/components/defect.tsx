@@ -5,16 +5,16 @@ import { useRouter } from "expo-router";
 
 export default function Defect({ id, name, description }: DefectProps) {
   const image: ImageIndex = {
-    1: require("@/src/assets/defects/deterioracao-concreto.png"),
-    2: require("@/src/assets/defects/rachaduras.png"),
-    3: require("@/src/assets/defects/infiltracao.png"),
-    4: require("@/src/assets/defects/mofo.png"),
-    5: require("@/src/assets/defects/destacamento-ceramico.png"),
-    6: require("@/src/assets/defects/corrosao.png"),
-    7: require("@/src/assets/defects/buraco.png"),
-    8: require("@/src/assets/defects/afundamento.png"),
-    9: require("@/src/assets/defects/trincas.png"),
-    10: require("@/src/assets/defects/remendo.png"),
+    1: require("@/src/assets/deterioracao-concreto.png"),
+    2: require("@/src/assets/rachaduras.png"),
+    3: require("@/src/assets/infiltracao.png"),
+    4: require("@/src/assets/mofo.png"),
+    5: require("@/src/assets/destacamento-ceramico.png"),
+    6: require("@/src/assets/corrosao.png"),
+    7: require("@/src/assets/buraco.png"),
+    8: require("@/src/assets/afundamento.png"),
+    9: require("@/src/assets/trincas.png"),
+    10: require("@/src/assets/remendo.png"),
   };
 
   const router = useRouter();
