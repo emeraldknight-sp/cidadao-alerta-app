@@ -6,7 +6,7 @@ declare module "*.png";
 
 interface ButtonProps extends TouchableOpacityProps {
   children: React.ReactNode;
-  color: "primary" | "secondary"
+  color: "primary" | "secondary";
 }
 
 interface ButtonTextProps {
@@ -18,8 +18,12 @@ interface ButtonIconProps {
 }
 
 interface User {
+  name: string;
   email: string;
+  phone: string;
   password: string;
+  reports: any[];
+  isLogged: boolean;
 }
 
 interface LinkButtonProps extends LinkProps<string> {
@@ -30,6 +34,15 @@ interface DefectProps {
   id: number;
   name: string;
   description: string;
+}
+
+interface ReportProps {
+  name: string;
+  email: string;
+  phone: string;
+  defect: string;
+  address: string;
+  image?: string | null;
 }
 
 type ImageIndex = {
