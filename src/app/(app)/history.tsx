@@ -4,6 +4,7 @@ import { Eye, Save } from "lucide-react-native";
 import { Image } from "react-native";
 import { Text, View } from "react-native";
 import { TouchableOpacity } from "react-native";
+import { SafeAreaView } from "react-native";
 
 export default function History() {
   const reports = [
@@ -37,15 +38,15 @@ export default function History() {
   ];
 
   return (
-    <>
+    <SafeAreaView className="flex-1 mt-10">
       <Header />
       <View className="bg-white flex-col flex-1 gap-4 p-4">
         <Text className="text-base text-neutral-950">
           Histórico de denúncias realizadas
         </Text>
         {reports ? (
-          reports.map((report) => (
-            <View className="flex-row flex-1 max-h-20">
+          reports.map((report, index) => (
+            <View key={index} className="flex-row flex-1 max-h-20">
               <Image
                 source={require("../../assets/mofo.png")}
                 className="w-20 h-20 rounded-md mr-4"
@@ -80,6 +81,6 @@ export default function History() {
           <Text className="">Você não tem denúncias realizadas.</Text>
         )}
       </View>
-    </>
+    </SafeAreaView>
   );
 }

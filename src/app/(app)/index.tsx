@@ -8,10 +8,11 @@ import {
   CollapseHeader,
   CollapseBody,
 } from "accordion-collapse-react-native";
+import { SafeAreaView } from "react-native";
 
 export default function Home() {
   return (
-    <>
+    <SafeAreaView className="flex-1 mt-10">
       <Header />
       <View className="flex-col flex-1 gap-3 p-4 bg-white">
         <Collapse>
@@ -69,6 +70,6 @@ export default function Home() {
           </CollapseBody>
         </Collapse>
       </View>
-    </>
+    </SafeAreaView>
   );
 }

@@ -1,14 +1,14 @@
 import Header from "@/src/components/header";
-import { BUILDINGS, PAVIMENTS } from "@/src/utils/data/options-list";
+import { DEFECTS } from "@/src/utils/data/options-list";
 import { Button } from "@/src/components/button";
-import { Image, ScrollView, Text, View } from "react-native";
+import { Image, SafeAreaView, ScrollView, Text, View } from "react-native";
 import { ImageIndex } from "@/src/@types";
 import { useLocalSearchParams, useRouter } from "expo-router";
 
 export default function Defect() {
   const { id } = useLocalSearchParams();
   const router = useRouter();
-  const defect = BUILDINGS.concat(PAVIMENTS).find((buildingEL) => buildingEL.id === Number(id));
+  const defect = DEFECTS.find((buildingEL) => buildingEL.id === Number(id));
 
   const image: ImageIndex = {
     1: require("@/src/assets/deterioracao-concreto.png"),
@@ -29,7 +29,7 @@ export default function Defect() {
 
   return (
     defect && (
-      <>
+      <SafeAreaView className="flex-1 mt-10">
         <Header />
         <ScrollView className="bg-white flex-col flex-1 p-4">
           <Text className="text-base text-neutral-950 mb-2">
@@ -39,7 +39,7 @@ export default function Defect() {
             <Text className="text-xl text-neutral-950 font-semibold">
               {defect.name}
             </Text>
-            <Text className="text-base text-neutral-950 leading-6">
+            <Text className="text-base text-neutral-950 leading-6 text-justify">
               {defect.description}
             </Text>
           </View>
@@ -52,7 +52,7 @@ export default function Defect() {
             <Button.Text>Solicitar manutenção</Button.Text>
           </Button>
         </ScrollView>
-      </>
+      </SafeAreaView>
     )
   );
 }
