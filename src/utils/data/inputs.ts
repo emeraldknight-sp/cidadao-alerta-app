@@ -3,7 +3,7 @@ export const INPUTS = [
     id: 1,
     name: "name",
     text: "Nome:",
-    placeholder: "Informe seu nome",
+    placeholder: "Digite seu nome completo",
   },
   {
     id: 2,
@@ -27,6 +27,12 @@ export const INPUTS = [
     id: 5,
     name: "address",
     text: "Endereço:",
-    placeholder: "Digite o endereço onde está o problema",
+    placeholder: "Informe o endereço onde está o problema",
+  },
+  {
+    id: 6,
+    name: "reference",
+    text: "Ponto de referência:",
+    placeholder: "Informe um ponto de referência",
   },
 ];
