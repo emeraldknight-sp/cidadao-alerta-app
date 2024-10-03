@@ -1,28 +1,9 @@
-import { Loading } from "../../components/loading";
-import { FontAwesome } from "@expo/vector-icons";
-import { Tabs } from "expo-router";
 import colors from "tailwindcss/colors";
-import {
-  useFonts,
-  Inter_400Regular,
-  Inter_500Medium,
-  Inter_600SemiBold,
-  Inter_700Bold,
-} from "@expo-google-fonts/inter";
+import { FontAwesome } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native";
+import { Tabs } from "expo-router";
 
 export default function Layout() {
-  const [fontsLoaded] = useFonts({
-    Inter_400Regular,
-    Inter_500Medium,
-    Inter_600SemiBold,
-    Inter_700Bold,
-  });
-
-  if (!fontsLoaded) {
-    return <Loading />;
-  }
-
   return (
     <SafeAreaView className="flex-1">
       <Tabs>
