@@ -42,7 +42,8 @@ interface ReportProps {
   phone: string;
   defect: string;
   address: string;
-  image?: string | null;
+  reference: string;
+  image: string;
 }
 
 type ImageIndex = {
