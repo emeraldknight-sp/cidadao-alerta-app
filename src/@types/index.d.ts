@@ -17,15 +17,6 @@ interface ButtonIconProps {
   children: React.ReactNode;
 }
 
-interface User {
-  name: string;
-  email: string;
-  phone: string;
-  password: string;
-  reports: any[];
-  isLogged: boolean;
-}
-
 interface LinkButtonProps extends LinkProps<string> {
   title: string;
 }
@@ -44,6 +35,15 @@ interface ReportProps {
   address: string;
   reference: string;
   image: string;
+}
+
+interface ReportsContextProps {
+  reports: ReportProps[];
+  addReport: (report: ReportProps) => void;
+}
+
+interface ReportsProviderProps {
+  children: React.ReactNode;
 }
 
 type ImageIndex = {
