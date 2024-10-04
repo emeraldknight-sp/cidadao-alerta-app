@@ -1,6 +1,6 @@
-import Header from "@/src/components/header";
-import { DEFECTS } from "@/src/utils/data/options-list";
 import { Button } from "@/src/components/button";
+import { DEFECTS } from "@/src/utils/data/options-list";
+import { Header } from "@/src/components/header";
 import { Image, SafeAreaView, ScrollView, Text, View } from "react-native";
 import { ImageIndex } from "@/src/@types";
 import { useLocalSearchParams, useRouter } from "expo-router";

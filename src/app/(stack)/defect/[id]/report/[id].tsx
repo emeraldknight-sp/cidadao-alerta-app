@@ -2,14 +2,14 @@ import * as FileSystem from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
 import * as Print from "expo-print";
 import * as Sharing from "expo-sharing";
-import Header from "@/src/components/header";
 import { Button } from "@/src/components/button";
 import { DEFECTS } from "@/src/utils/data/options-list";
+import { Header } from "@/src/components/header";
 import { INPUTS } from "@/src/utils/data/inputs";
 import { Input } from "@/src/components/input";
 import { ReportProps } from "@/src/@types";
 import { router, useLocalSearchParams } from "expo-router";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -28,6 +28,7 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
+import { ReportsContext } from "@/src/context/ReportsContext";
 
 const schema = z.object({
   name: z.string({ required_error: "Campo obrigatório" }),
@@ -41,6 +42,7 @@ const schema = z.object({
   address: z
     .string({ required_error: "Campo obrigatório" })
     .min(1, "Endereço muito curto"),
+  reference: z.string(),
 });
 
 export default function Report() {
@@ -52,6 +54,7 @@ export default function Report() {
 
   const { id } = useLocalSearchParams();
   const [image, setImage] = useState<string>("");
+  const { addReport } = useContext(ReportsContext);
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -209,6 +212,8 @@ export default function Report() {
       image: image,
     };
 
+    addReport(report);
+
     await createPDF(report);
     router.push("/history");
   };
@@ -264,7 +269,10 @@ export default function Report() {
         </KeyboardAvoidingView>
         <View className="bg-white w-full h-44 mb-4 overflow-hidden rounded-md border-2 border-orange-500 justify-center items-center">
           {!image ? (
-            <TouchableOpacity onPress={pickImage} className="w-full h-full justify-center items-center">
+            <TouchableOpacity
+              onPress={pickImage}
+              className="w-full h-full justify-center items-center"
+            >
               <Text className="text-neutral-400 text-sm text-center max-w-[75%]">
                 Selecione anexos para completar a sua solicitação
               </Text>
