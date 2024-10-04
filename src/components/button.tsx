@@ -19,7 +19,7 @@ function Button({ children, color, ...rest }: ButtonProps) {
 
 function ButtonText({ children }: ButtonTextProps) {
   return (
-    <Text className="text-neutral-50 font-heading text-base mx-2">
+    <Text className="text-neutral-50 font-heading text-xl mx-2">
       {children}
     </Text>
   );
