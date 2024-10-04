@@ -8,11 +8,8 @@ export default function App() {
       <View className="flex flex-col items-center gap-2">
         <Image
           source={require("@/src/assets/logo.png")}
-          className="w-[120px] h-[82px]"
+          className="w-48 h-48"
         />
-        <Text className="text-2xl text-neutral-950 font-heading">
-          Cidadão Alerta
-        </Text>
       </View>
       <Button color="primary" onPress={() => router.push("/(app)/")}>
         <Button.Text>Começar</Button.Text>
