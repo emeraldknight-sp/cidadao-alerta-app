@@ -1,14 +1,14 @@
-import Header from "@/src/components/header";
 import clsx from "clsx";
 import { BUILDINGS, OPTIONS, PAVIMENTS } from "@/src/utils/data/options-list";
-import { Link } from "expo-router";
-import { View, Text, FlatList } from "react-native";
+import { Header } from "@/src/components/header";
+import { Pressable, SafeAreaView } from "react-native";
+import { View, Text, FlatList, Image } from "react-native";
+import { router } from "expo-router";
 import {
   Collapse,
   CollapseHeader,
   CollapseBody,
 } from "accordion-collapse-react-native";
-import { SafeAreaView } from "react-native";
 
 export default function Home() {
   return (
@@ -28,16 +28,20 @@ export default function Home() {
               data={BUILDINGS}
               keyExtractor={(item) => item.name}
               renderItem={({ item }) => (
-                <Link
-                  href={`/defect/${item.id}`}
+                <Pressable
+                  onPress={() => router.push(`/defect/${item.id}`)}
                   className={clsx(
-                    "px-4 py-3",
-                    item.id % 2 === 0 ? "bg-neutral-200" : "bg-neutral-100"
+                    "flex flex-row items-center space-x-4 px-4 py-3",
+                    item.id % 2 === 0 ? "bg-neutral-50" : "bg-neutral-100"
                   )}
-                  asChild
                 >
+                  <Image
+                    source={item.image}
+                    className="w-10 h-10 rounded-md"
+                    alt={item.name}
+                  />
                   <Text className="text-neutral-950 text-lg">{item.name}</Text>
-                </Link>
+                </Pressable>
               )}
             />
           </CollapseBody>
@@ -55,16 +59,20 @@ export default function Home() {
               data={PAVIMENTS}
               keyExtractor={(item) => item.name}
               renderItem={({ item }) => (
-                <Link
-                  href={`/defect/${item.id}`}
+                <Pressable
+                  onPress={() => router.push(`/defect/${item.id}`)}
                   className={clsx(
-                    "px-4 py-3",
-                    item.id % 2 === 0 ? "bg-neutral-200" : "bg-neutral-100"
+                    "flex flex-row items-center space-x-4 px-4 py-3",
+                    item.id % 2 === 0 ? "bg-neutral-50" : "bg-neutral-100"
                   )}
-                  asChild
                 >
+                  <Image
+                    source={item.image}
+                    className="w-10 h-10 rounded-md"
+                    alt={item.name}
+                  />
                   <Text className="text-neutral-950 text-lg">{item.name}</Text>
-                </Link>
+                </Pressable>
               )}
             />
           </CollapseBody>

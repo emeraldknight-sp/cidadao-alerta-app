@@ -1,41 +1,15 @@
-import Header from "@/src/components/header";
 import colors from "tailwindcss/colors";
 import { Eye, Save } from "lucide-react-native";
+import { Header } from "@/src/components/header";
 import { Image } from "react-native";
+import { ReportsContext } from "@/src/context/ReportsContext";
+import { SafeAreaView } from "react-native";
 import { Text, View } from "react-native";
 import { TouchableOpacity } from "react-native";
-import { SafeAreaView } from "react-native";
+import { useContext } from "react";
 
 export default function History() {
-  const reports = [
-    {
-      id: 1,
-      defect: "Deterioração do Concreto",
-      address: "Rua Francisco Fortes, 748",
-      name: "David Almeida",
-      phone: "86988641961",
-      email: "contato.pessoa@email.com",
-      image: "imagem",
-    },
-    {
-      id: 2,
-      defect: "Deterioração do Concreto",
-      address: "Rua Francisco Fortes, 748",
-      name: "David Almeida",
-      phone: "86988641961",
-      email: "contato.pessoa@email.com",
-      image: "imagem",
-    },
-    {
-      id: 3,
-      defect: "Deterioração do Concreto",
-      address: "Rua Francisco Fortes, 748",
-      name: "David Almeida",
-      phone: "86988641961",
-      email: "contato.pessoa@email.com",
-      image: "imagem",
-    },
-  ];
+  const { reports } = useContext(ReportsContext);
 
   return (
     <SafeAreaView className="flex-1 mt-10">
@@ -44,11 +18,11 @@ export default function History() {
         <Text className="text-base text-neutral-950">
           Histórico de denúncias realizadas
         </Text>
-        {reports ? (
+        {reports.length ? (
           reports.map((report, index) => (
             <View key={index} className="flex-row flex-1 max-h-20">
               <Image
-                source={require("../../assets/mofo.png")}
+                source={{ uri: report.image }}
                 className="w-20 h-20 rounded-md mr-4"
               />
               <View className="flex-col flex-1 justify-between">
@@ -78,7 +52,11 @@ export default function History() {
             </View>
           ))
         ) : (
-          <Text className="">Você não tem denúncias realizadas.</Text>
+          <View className="flex flex-col justify-center items-center flex-1">
+            <Text className="text-base font-medium text-neutral-700">
+              Você não tem denúncias realizadas.
+            </Text>
+          </View>
         )}
       </View>
     </SafeAreaView>
