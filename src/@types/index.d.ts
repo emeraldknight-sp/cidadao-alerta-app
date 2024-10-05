@@ -45,7 +45,3 @@ interface ReportsContextProps {
 interface ReportsProviderProps {
   children: React.ReactNode;
 }
-
-type ImageIndex = {
-  [key: number]: ImageSourcePropType;
-};
