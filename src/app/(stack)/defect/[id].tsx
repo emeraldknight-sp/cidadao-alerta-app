@@ -2,26 +2,11 @@ import { Button } from "@/src/components/button";
 import { DEFECTS } from "@/src/utils/data/options-list";
 import { Header } from "@/src/components/header";
 import { Image, SafeAreaView, ScrollView, Text, View } from "react-native";
-import { ImageIndex } from "@/src/@types";
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams, router } from "expo-router";
 
 export default function Defect() {
   const { id } = useLocalSearchParams();
-  const router = useRouter();
   const defect = DEFECTS.find((buildingEL) => buildingEL.id === Number(id));
-
-  const image: ImageIndex = {
-    1: require("@/src/assets/deterioracao-concreto.png"),
-    2: require("@/src/assets/rachaduras.png"),
-    3: require("@/src/assets/infiltracao.png"),
-    4: require("@/src/assets/mofo.png"),
-    5: require("@/src/assets/destacamento-ceramico.png"),
-    6: require("@/src/assets/corrosao.png"),
-    7: require("@/src/assets/buraco.png"),
-    8: require("@/src/assets/afundamento.png"),
-    9: require("@/src/assets/trincas.png"),
-    10: require("@/src/assets/remendo.png"),
-  };
 
   const handleReport = () => {
     router.push(`/defect/${id}/report/${id}`);
@@ -44,8 +29,8 @@ export default function Defect() {
             </Text>
           </View>
           <Image
-            source={image[Number(id)]}
-            className="w-full h-56 rounded-md my-4"
+            source={defect.image}
+            className="w-full h-56 max-h-96 md:h-[30vh] rounded-md my-4"
             alt={defect.name}
           />
           <Button color="secondary" onPress={handleReport}>

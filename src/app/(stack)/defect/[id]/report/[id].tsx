@@ -1,19 +1,16 @@
-import * as FileSystem from "expo-file-system";
 import * as ImagePicker from "expo-image-picker";
-import * as Print from "expo-print";
-import * as Sharing from "expo-sharing";
 import { Button } from "@/src/components/button";
 import { DEFECTS } from "@/src/utils/data/options-list";
 import { Header } from "@/src/components/header";
 import { INPUTS } from "@/src/utils/data/inputs";
 import { Input } from "@/src/components/input";
-import { ReportProps } from "@/src/@types";
+import { ReportsContext } from "@/src/context/ReportsContext";
+import { createPDF } from "@/src/utils/functions/create-pdf";
 import { router, useLocalSearchParams } from "expo-router";
 import { useContext, useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  Alert,
   Image,
   KeyboardAvoidingView,
   SafeAreaView,
@@ -28,7 +25,6 @@ import {
   SubmitHandler,
   useForm,
 } from "react-hook-form";
-import { ReportsContext } from "@/src/context/ReportsContext";
 
 const schema = z.object({
   name: z.string({ required_error: "Campo obrigatório" }),
@@ -68,148 +64,16 @@ export default function Report() {
     }
   };
 
-  const getImageBase64 = async (imageUri: string) => {
-    return await FileSystem.readAsStringAsync(imageUri, {
-      encoding: FileSystem.EncodingType.Base64,
-    });
-  };
-
-  const createHTMLContent = (report: ReportProps, imageBase64: string) => {
-    return `
-      <html>
-        <head>
-          <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
-        </head>
-        <body
-          style="
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-          "
-        >
-          <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-            <tr>
-              <td colspan="4" style="text-align: center; font-size: 24px; color: #dc2626; font-weight: 700; border: 1px solid #171717; padding: 12px">
-                Denúncia
-              </td>
-            </tr>
-            <tr>
-              <td colspan="1" style="background-color: #262626; color: white; padding: 10px; border: 1px solid black;">
-                <strong>Nome:</strong>
-              </td>
-              <td colspan="3" style="background-color: white; color: black; padding: 10px; border: 1px solid black;">
-                ${report.name}
-              </td>
-            </tr>
-            <tr>
-              <td style="background-color: #262626; color: white; padding: 10px; border: 1px solid black;">
-                <strong>Email:</strong>
-              </td>
-              <td style="background-color: white; color: black; padding: 10px; border: 1px solid black;">
-                ${report.email}
-              </td>
-              <td style="background-color: #262626; color: white; padding: 10px; border: 1px solid black; border: 1px solid black;">
-                <strong>Telefone:</strong>
-              </td>
-              <td style="background-color: white; color: black; padding: 10px; border: 1px solid black;">
-                ${report.phone}
-              </td>
-            </tr>
-            <tr>
-              <td style="background-color: #262626; color: white; padding: 10px; border: 1px solid black;">
-                <strong>Defeito:</strong>
-              </td>
-              <td style="background-color: white; color: black; padding: 10px; border: 1px solid black;">
-                ${report.defect}
-              </td>
-              <td style="background-color: #262626; color: white; padding: 10px; border: 1px solid black;">
-                <strong>Endereço:</strong>
-              </td>
-              <td style="background-color: white; color: black; padding: 10px; border: 1px solid black;" colspan="3">
-                ${report.address}
-              </td>
-            </tr>
-            <tr>
-              <td style="max-width: 50px; background-color: #262626; color: white; padding: 10px; border: 1px solid black;">
-                <strong>Ponto de referência:</strong>
-              </td>
-              <td style="background-color: white; color: black; padding: 10px; border: 1px solid black;" colspan="3">
-                ${report.reference}
-              </td>
-            </tr>
-          </table>
-          </table>
-          <img
-            src="data:image/png;base64,${imageBase64}"
-            alt="imagem anexada"
-            style="
-              display: block;
-              margin: 20px auto;
-              border: 1px solid #ccc;
-              border-radius: 5px;
-              max-width: 70%;
-              max-height: 60vh;
-              object-fit: contain;
-            "
-          />
-        </body>
-      </html>
-    `;
-  };
-
-  const savePDF = async (uri: string, defect: string) => {
-    const formatDefect = () => defect.toLowerCase().replaceAll(" ", "_");
-    const fileUri = `${FileSystem.documentDirectory}alerta_${formatDefect()}_${Date.now()}.pdf`;
-
-    const downloadsDir = `${FileSystem.documentDirectory}Downloads/`;
-    await FileSystem.makeDirectoryAsync(downloadsDir, { intermediates: true });
-
-    const downloadUri = `${downloadsDir}alerta_${formatDefect()}_${Date.now()}.pdf`;
-
-    await FileSystem.moveAsync({
-      from: uri,
-      to: downloadUri,
-    });
-
-    return downloadUri;
-  };
-
-  const sharePDF = async (fileUri: string) => {
-    await Sharing.shareAsync(fileUri, {
-      UTI: ".pdf",
-      mimeType: "application/pdf",
-    }).catch((error) => {
-      Alert.alert("Erro", "Não foi possível compartilhar o PDF.");
-    });
-  };
-
-  const createPDF = async (report: ReportProps) => {
-    try {
-      const imageBase64 = await getImageBase64(report.image);
-      const html = createHTMLContent(report, imageBase64);
-      const { uri } = await Print.printToFileAsync({ html, base64: false });
-
-      const fileUri = await savePDF(uri, report.defect);
-      await sharePDF(fileUri);
-
-      Alert.alert("PDF salvo com sucesso!", `Localização: ${fileUri}`);
-    } catch (error) {
-      Alert.alert("Erro", "Ocorreu um erro ao criar o PDF.");
-    }
-  };
-
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    const { name, email, phone, defect, address, reference } = data;
     const report = {
-      name: data.name,
-      email: data.email,
-      phone: data.phone,
-      defect: data.defect,
-      address: data.address,
-      reference: data.reference,
-      image: image,
+      name,
+      email,
+      phone,
+      defect,
+      address,
+      reference,
+      image,
     };
 
     addReport(report);
