@@ -18,9 +18,10 @@ export const createHTML = (report: ReportProps, imageBase64: string) => {
       >
         <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
           <tr>
-            <td colspan="4" style="text-align: center; font-size: 24px; color: #dc2626; font-weight: 700; border: 1px solid #171717; padding: 12px">
-              <img src="src/assets/logo.png" style="width: 32px; height: 32px; margin-right: 16px;" alt="cidadão alerta logotipo" />
-              Denúncia
+            <td colspan="4" style="border: 1px solid #171717;">
+              <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 8px;">
+                <p style="text-align: center; font-size: 24px; color: #dc2626; font-weight: 700; ">Denúncia</p>
+              </div>
             </td>
           </tr>
           <tr>
@@ -57,14 +58,6 @@ export const createHTML = (report: ReportProps, imageBase64: string) => {
             </td>
             <td style="background-color: white; color: black; padding: 10px; border: 1px solid black;" colspan="3">
               ${report.address}
-            </td>
-          </tr>
-          <tr>
-            <td style="max-width: 50px; background-color: #262626; color: white; padding: 10px; border: 1px solid black;">
-              <strong>Ponto de referência:</strong>
-            </td>
-            <td style="background-color: white; color: black; padding: 10px; border: 1px solid black;" colspan="3">
-              ${report.reference}
             </td>
           </tr>
         </table>
