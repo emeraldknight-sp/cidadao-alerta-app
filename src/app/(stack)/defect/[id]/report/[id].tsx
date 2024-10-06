@@ -13,6 +13,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Image,
   KeyboardAvoidingView,
+  Platform,
   SafeAreaView,
   ScrollView,
   Text,
@@ -87,11 +88,15 @@ export default function Report() {
   return (
     <SafeAreaView className="flex-1 mt-10">
       <Header />
-      <ScrollView
-        className="bg-white flex-col flex-1 px-4"
-        showsVerticalScrollIndicator={false}
+      <KeyboardAvoidingView
+        keyboardVerticalOffset={Platform.OS === "ios" ? 40 : 0}
+        className="flex flex-1"
+        behavior="padding"
       >
-        <KeyboardAvoidingView behavior="padding">
+        <ScrollView
+          className="bg-white flex flex-col flex-1 px-4"
+          showsVerticalScrollIndicator={false}
+        >
           <Text className="text-xl text-center font-subtitle text-neutral-950 py-4">
             Formulário de denúncia
           </Text>
@@ -130,32 +135,32 @@ export default function Report() {
               </View>
             );
           })}
-        </KeyboardAvoidingView>
-        <View className="bg-white w-full h-44 mb-4 overflow-hidden rounded-md border-2 border-orange-500 justify-center items-center">
-          {!image ? (
-            <TouchableOpacity
-              onPress={pickImage}
-              className="w-full h-full justify-center items-center"
-            >
-              <Text className="text-neutral-400 text-sm text-center max-w-[75%]">
-                Selecione anexos para completar a sua solicitação
-              </Text>
-            </TouchableOpacity>
-          ) : (
-            <Image
-              source={{ uri: image }}
-              className="w-full h-full object-cover"
-            />
-          )}
-        </View>
-        <Button
-          color="primary"
-          className="mb-24"
-          onPress={handleSubmit(onSubmit)}
-        >
-          <Button.Text>Enviar solicitação</Button.Text>
-        </Button>
-      </ScrollView>
+          <View className="bg-white w-full h-44 mb-4 overflow-hidden rounded-md border-2 border-orange-500 justify-center items-center">
+            {!image ? (
+              <TouchableOpacity
+                onPress={pickImage}
+                className="w-full h-full justify-center items-center"
+              >
+                <Text className="text-neutral-400 text-sm text-center max-w-[75%]">
+                  Selecione anexos para completar a sua solicitação
+                </Text>
+              </TouchableOpacity>
+            ) : (
+              <Image
+                source={{ uri: image }}
+                className="w-full h-full object-cover"
+              />
+            )}
+          </View>
+          <Button
+            color="primary"
+            className="mb-24"
+            onPress={handleSubmit(onSubmit)}
+          >
+            <Button.Text>Enviar solicitação</Button.Text>
+          </Button>
+        </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 }
