@@ -6,6 +6,7 @@ import { ReportsContext } from "@/src/context/ReportsContext";
 import { SafeAreaView } from "react-native";
 import { Text, View } from "react-native";
 import { TouchableOpacity } from "react-native";
+import { createPDF } from "@/src/utils/functions/create-pdf";
 import { useContext } from "react";
 
 export default function History() {
@@ -41,7 +42,10 @@ export default function History() {
                       Visualizar
                     </Text>
                   </TouchableOpacity>
-                  <TouchableOpacity className="flex-row gap-1">
+                  <TouchableOpacity
+                    className="flex-row gap-1"
+                    onPress={() => createPDF(report)}
+                  >
                     <Save size={20} color={colors.orange[500]} />
                     <Text className="text-orange-500 underline font-bold">
                       Salvar
