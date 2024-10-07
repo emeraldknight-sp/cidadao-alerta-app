@@ -39,7 +39,9 @@ const schema = z.object({
   address: z
     .string({ required_error: "Campo obrigatório" })
     .min(1, "Endereço muito curto"),
-  reference: z.string(),
+  reference: z
+    .string({ required_error: "Campo obrigatório" })
+    .min(1, "Referência muito curta"),
 });
 
 export default function Report() {
