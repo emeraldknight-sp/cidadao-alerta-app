@@ -60,7 +60,14 @@ export const createHTML = (report: ReportProps, imageBase64: string) => {
               ${report.address}
             </td>
           </tr>
-        </table>
+          <tr>
+            <td style="max-width: 50px; background-color: #262626; color: white; padding: 10px; border: 1px solid black;">
+              <strong>Ponto de referência:</strong>
+            </td>
+            <td style="background-color: white; color: black; padding: 10px; border: 1px solid black;" colspan="3">
+              ${report.reference}
+            </td>
+          </tr>
         </table>
         <img
           src="data:image/png;base64,${imageBase64}"
