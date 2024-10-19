@@ -20,7 +20,7 @@ export const createHTML = (report: ReportProps, imageBase64: string) => {
           <tr>
             <td colspan="4" style="border: 1px solid #171717;">
               <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 8px;">
-                <p style="text-align: center; font-size: 24px; color: #dc2626; font-weight: 700; ">Denúncia</p>
+                <p style="text-align: center; font-size: 24px; color: #dc2626; font-weight: 700; ">Relatório de Comunicação de Problema</p>
               </div>
             </td>
           </tr>
